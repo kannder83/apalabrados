@@ -6,6 +6,8 @@ const app = express();
 const db = process.env.DATABASE_URI;
 const PORT = process.env.PORT || 8001;
 
+const validatorHandle = require("./middlewares/validatorHandle");
+
 connectDB(db);
 
 app.options("*", (req, res, next) => {
@@ -25,10 +27,14 @@ app.get("/", (req, res) => {
   res.send("Apalabrados --> Running!!");
 });
 
-//Route
+//Validator
+app.use(validatorHandle);
+
+//Routes
 app.use("/api/numbers", require("./routes/api/numbers"));
 app.use("/api/texts", require("./routes/api/texts"));
 app.use("/api/characters", require("./routes/api/characters"));
+app.use("/api/storedata", require("./routes/api/storeData"));
 
 //Inicia la app
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
