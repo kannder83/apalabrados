@@ -28,13 +28,13 @@ app.get("/", (req, res) => {
 });
 
 //Validator
-app.use(validatorHandle);
+//app.use(validatorHandle);
 
 //Routes
 app.use("/api/numbers", require("./routes/api/numbers"));
 app.use("/api/texts", require("./routes/api/texts"));
 app.use("/api/characters", require("./routes/api/characters"));
-app.use("/api/storedata", require("./routes/api/storeData"));
+app.use("/api/storedata", validatorHandle, require("./routes/api/storeData"));
 
 //Inicia la app
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

@@ -1,13 +1,14 @@
 const Numbers = require("../models/Number");
-const Text = require("../../models/Text");
-const Character = require("../../models/Character");
+const Text = require("../models/Text");
+const Character = require("../models/Character");
 
 class DataService {
-  constructor() {
-    this.dataNumber = [];
-    this.dataString = [];
-    this.dataCharacter = [];
-  }
+  // constructor() {
+  //   this.dataNumber = [];
+  //   this.dataString = [];
+  //   this.dataCharacter = [];
+  //   this.storeData = {};
+  // }
 
   async create(data, type) {
     if (type == "number") {
@@ -29,7 +30,7 @@ class DataService {
     }
     if (type == "character") {
       const newData = new Character({
-        character: req.body.character,
+        character: data.body.character,
       });
       const newStoreData = await newData.save();
       return newStoreData;
