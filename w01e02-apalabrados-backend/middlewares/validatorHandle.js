@@ -7,63 +7,80 @@ const isCharacterANumber = (number) => {
 };
 
 const isCharacterASpecial = (special) => {
-  return /["*,#;.!?"]/.test(special);
+  return /["*,#;.!áéíóúÁÉÍÓÚ& "]/.test(special);
 };
 
-const validatorHandle = (req, res, next) => {
-  const newData = req.body.data;
-  const arrayData = Array.from(newData);
+const identifyData = (information) => {
+  const arrayData = Array.from(information);
   let isANumber = 0;
   let isALetter = 0;
   let isACharacter = 0;
+  let characterIndex = null;
 
   arrayData.forEach((element) => {
     if (isCharacterALetter(element)) {
-      console.log("Es una letra: ", element);
       isALetter = isALetter + 1;
     }
-
     if (isCharacterANumber(element)) {
-      console.log("Es es un numero: ", element);
       isANumber = isANumber + 1;
     }
     if (isCharacterASpecial(element)) {
-      console.log("Es especial: ", element);
+      if (!characterIndex) {
+        characterIndex = element;
+      }
       isACharacter = isACharacter + 1;
     }
   });
 
-  if (isANumber === arrayData.length) {
-    console.log("Todos son números.");
-  }
-  if (isALetter === arrayData.length) {
-    console.log("Todas son letras.");
-  }
-
-  if (newData === 1) {
-    const validateNumber = {
-      type: 1,
-      number: 23,
-      accumulated: 455,
-    };
-    req.body = validateNumber;
-    next();
-  } else if (newData === 2) {
-    const validateText = {
-      type: 2,
-      text: "Prueba",
-      start: "P",
-      end: "a",
-    };
-    req.body = validateText;
-    next();
-  } else if (newData === 3) {
-    const validateCharacter = { type: 3, character: "#" };
-    req.body = validateCharacter;
-    next();
+  if (isACharacter) {
+    return { name: "character", value: characterIndex };
+  } else if (isANumber === arrayData.length) {
+    return { name: "number" };
+  } else if (isALetter === arrayData.length) {
+    return { name: "text" };
   } else {
+    return "notData";
+  }
+};
+
+const byDataType = (dataObject, data) => {
+  if (dataObject.name == "text") {
+    const dataText = {
+      type: dataObject.name,
+      text: data.toString(),
+      start: data[0],
+      end: data[data.length - 1],
+    };
+    return dataText;
+  }
+  if (dataObject.name == "number") {
+    const dataNumber = {
+      type: dataObject.name,
+      number: parseInt(data.toString()),
+      accumulated: parseInt(data.toString()),
+    };
+    return dataNumber;
+  }
+  if (dataObject.name == "character") {
+    const dataCharacter = {
+      type: dataObject.name,
+      character: dataObject.value,
+    };
+    return dataCharacter;
+  }
+  return { type: 0 };
+};
+
+const validatorHandle = (req, res, next) => {
+  const newData = req.body.data;
+  const dataType = identifyData(newData);
+  const dataBody = byDataType(dataType, newData);
+
+  if (!dataBody.type) {
     res.status(400).json({ Message: "Información no válida." });
   }
+  req.body = dataBody;
+  next();
 };
 
 module.exports = validatorHandle;

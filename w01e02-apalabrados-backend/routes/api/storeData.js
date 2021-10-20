@@ -6,7 +6,7 @@ const DataService = require("../../services/data.service");
 const service = new DataService();
 
 router.post("/", async (req, res) => {
-  if (req.body.type === 1) {
+  if (req.body.type == "number") {
     try {
       const bodyNumber = req;
       const newNumber = await service.create(bodyNumber, "number");
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
       res.status(400).json({ Error: err.message });
     }
   }
-  if (req.body.type === 2) {
+  if (req.body.type == "text") {
     try {
       const bodyText = req;
       const newText = await service.create(bodyText, "text");
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       res.status(400).json({ Error: err.message });
     }
   }
-  if (req.body.type === 3) {
+  if (req.body.type == "character") {
     try {
       const bodyCharacter = req;
       const newCharacter = await service.create(bodyCharacter, "character");
