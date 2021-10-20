@@ -7,6 +7,8 @@ const Home = ({
   setCharacters,
   label_input,
   placeholder_input,
+  label_button,
+  submitHandle,
 }) => {
   return (
     <main className="main">
@@ -16,6 +18,8 @@ const Home = ({
         setCharacters={setCharacters}
         label_input={label_input}
         placeholder_input={placeholder_input}
+        label_button={label_button}
+        submitHandle={submitHandle}
       />
     </main>
   );

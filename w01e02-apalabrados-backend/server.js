@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 const app = express();
 const db = process.env.DATABASE_URI;
@@ -10,12 +11,14 @@ const validatorHandle = require("./middlewares/validatorHandle");
 
 connectDB(db);
 
+app.use(cors());
+
 app.options("*", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
-    "Authorization, Content-Length, X-Requested-With"
+    "Authorization,Content-Length,X-Requested-With"
   );
   res.send(200);
 });

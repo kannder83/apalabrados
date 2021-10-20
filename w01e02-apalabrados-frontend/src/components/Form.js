@@ -3,6 +3,8 @@ const Form = ({
   setCharacters,
   label_input,
   placeholder_input,
+  label_button,
+  submitHandle,
 }) => {
   return (
     <form
@@ -20,8 +22,13 @@ const Form = ({
         }}
         placeholder={placeholder_input}
       />
-      <button type="submit" onClick={() => console.log(characters)}>
-        Guardar
+      <button
+        type="submit"
+        onClick={() => {
+          submitHandle(characters);
+        }}
+      >
+        {label_button}
       </button>
     </form>
   );
