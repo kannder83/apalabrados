@@ -1,5 +1,6 @@
 import { Title } from "../components/Title";
 import { Form } from "../components/Form";
+import { Validation } from "../components/Validation";
 
 const Home = ({
   main_title,
@@ -9,9 +10,10 @@ const Home = ({
   placeholder_input,
   label_button,
   submitHandle,
+  validation,
 }) => {
   return (
-    <main className="main">
+    <main className="main view">
       <Title title={main_title} />
       <Form
         characters={characters}
@@ -21,8 +23,9 @@ const Home = ({
         label_button={label_button}
         submitHandle={submitHandle}
       />
+      <Validation validation={validation} />
     </main>
   );
 };
 
-export default Home;
+export { Home };

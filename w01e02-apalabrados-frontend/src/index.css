@@ -42,17 +42,27 @@
 
 .main {
   width: 100%;
-  min-height: calc(100vh - 7rem);
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: var(--color-one-light);
 }
 
+.view {
+  min-height: calc(100vh - 7rem);
+}
+
+.scroll {
+  height: calc(100vh - 7rem);
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
 .main_section {
   width: 100%;
-  padding: 10px 0;
+  padding: 30px 0 0 0;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -72,6 +82,11 @@
   font-size: 4rem;
   margin-bottom: 20px;
   margin: 40px 0;
+  color: var(--color-five);
+}
+
+.validation {
+  font-size: 2.6rem;
   color: var(--color-five);
 }
 
