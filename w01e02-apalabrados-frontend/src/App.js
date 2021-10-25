@@ -17,21 +17,22 @@ function App() {
   const URL_API_TEXTS = "http://localhost:8001/api/texts";
   const [reciveData, setReciveData] = useState([]);
   const [characters, setCharacters] = useState("");
+  const [menu, setMenu] = useState(false);
 
   const [numbers, setNumbers] = useState([]);
   const [words, setWords] = useState([]);
   const [char, setChar] = useState([]);
-  const [validation, setValidation] = useState([]);
+  const [validation, setValidation] = useState("");
 
-  const determinateData = (valitation) => {
-    if (valitation.number) {
-      setValidation("Es un número.");
-    } else if (valitation.character) {
-      setValidation("Es un carácter especial.");
-    } else if (valitation.text) {
-      setValidation("Es un texto.");
+  const determinateData = (value) => {
+    if (value.number) {
+      setValidation("Number");
+    } else if (value.character) {
+      setValidation("Character");
+    } else if (value.text) {
+      setValidation("Text");
     } else {
-      setValidation("No válido ❌");
+      setValidation("Invalid");
     }
   };
 
@@ -41,10 +42,9 @@ function App() {
       setReciveData(response.data);
       console.log(response.data);
       determinateData(response.data);
-      setCharacters("");
     } catch (err) {
       if (err.response) {
-        setValidation("No válido ❌");
+        setValidation("No válido");
         console.log(err.response.data);
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -61,7 +61,6 @@ function App() {
         setNumbers(response.data);
       } catch (err) {
         if (err.response) {
-          setValidation("No válido ❌");
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -81,7 +80,6 @@ function App() {
         setWords(response.data);
       } catch (err) {
         if (err.response) {
-          setValidation("No válido ❌");
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -100,7 +98,6 @@ function App() {
         setChar(response.data);
       } catch (err) {
         if (err.response) {
-          setValidation("No válido ❌");
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
@@ -114,7 +111,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header header_title="Prueba técnica" />
+      <Header header_title="Prueba técnica" menu={menu} setMenu={setMenu} />
       <Switch>
         <Route exact path="/">
           <Home
@@ -123,10 +120,11 @@ function App() {
             setCharacters={setCharacters}
             label_input="Escribe aquí"
             placeholder_input="Caracteres, letras o números..."
-            label_button="Validar"
+            label_button="Analizar"
             submitHandle={submitHandle}
             reciveData={reciveData}
             validation={validation}
+            setMenu={setMenu}
           />
         </Route>
         <Route path="/numbers">
@@ -135,6 +133,7 @@ function App() {
             title={"Números"}
             page="/"
             link_text="Regresar"
+            setMenu={setMenu}
           />
         </Route>
         <Route path="/texts">
@@ -143,6 +142,7 @@ function App() {
             title={"Palabras"}
             page="/"
             link_text="Regresar"
+            setMenu={setMenu}
           />
         </Route>
         <Route path="/characters">
@@ -151,6 +151,7 @@ function App() {
             title={"Caracteres"}
             page="/"
             link_text="Regresar"
+            setMenu={setMenu}
           />
         </Route>
         <Route path="*">
@@ -158,6 +159,7 @@ function App() {
             page="/"
             title="404 - Page Not Found."
             link_text="Regresar"
+            setMenu={setMenu}
           />
         </Route>
       </Switch>

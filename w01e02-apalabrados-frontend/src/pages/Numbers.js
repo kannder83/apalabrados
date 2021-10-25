@@ -2,7 +2,7 @@ import { SubTitle } from "../components/SubTitle";
 import { Button } from "../components/Button";
 import { Table } from "../components/Table";
 
-const Numbers = ({ numbers, title, link_text, page }) => {
+const Numbers = ({ numbers, title, link_text, page, setMenu }) => {
   const tableTitle = ["Index", "Numero", "Acumulado"];
 
   const listHeader = tableTitle.map((value, index) => {
@@ -20,7 +20,12 @@ const Numbers = ({ numbers, title, link_text, page }) => {
   });
 
   return (
-    <main className="main scroll">
+    <main
+      className="main scroll"
+      onClick={() => {
+        setMenu(false);
+      }}
+    >
       <SubTitle title={title} />
       <Table titleHeader={listHeader} elements={listOfNumbers.reverse()} />
       <Button link_text={link_text} page={page} />

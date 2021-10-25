@@ -11,9 +11,15 @@ const Home = ({
   label_button,
   submitHandle,
   validation,
+  setMenu,
 }) => {
   return (
-    <main className="main view">
+    <main
+      className="main view"
+      onClick={() => {
+        setMenu(false);
+      }}
+    >
       <Title title={main_title} />
       <Form
         characters={characters}

@@ -2,7 +2,7 @@ import { SubTitle } from "../components/SubTitle";
 import { Button } from "../components/Button";
 import { Table } from "../components/Table";
 
-const Characters = ({ char, title, link_text, page }) => {
+const Characters = ({ char, title, link_text, page, setMenu }) => {
   const tableTitle = ["Index", "Caracter"];
 
   const listHeader = tableTitle.map((value, index) => {
@@ -19,7 +19,12 @@ const Characters = ({ char, title, link_text, page }) => {
   });
 
   return (
-    <main className="main scroll">
+    <main
+      className="main scroll"
+      onClick={() => {
+        setMenu(false);
+      }}
+    >
       <SubTitle title={title} />
       <Table titleHeader={listHeader} elements={listOfChar.reverse()} />
       <Button link_text={link_text} page={page} />

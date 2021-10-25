@@ -1,10 +1,10 @@
 const Table = ({ titleHeader, elements }) => {
   return (
-    <table>
-      <thead>
-        <tr>{titleHeader}</tr>
+    <table className="table">
+      <thead className="table_title">
+        <tr className="table_title_col">{titleHeader}</tr>
       </thead>
-      <tbody>{elements}</tbody>
+      <tbody className="table_rows">{elements}</tbody>
     </table>
   );
 };

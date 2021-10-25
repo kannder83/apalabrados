@@ -23,6 +23,7 @@ const Form = ({
         placeholder={placeholder_input}
       />
       <button
+        className="button"
         type="submit"
         onClick={() => {
           submitHandle(characters);
