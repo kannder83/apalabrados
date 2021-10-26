@@ -1,8 +1,13 @@
 import { SubTitle } from "../components/SubTitle";
 import { Button } from "../components/Button";
 import { Table } from "../components/Table";
+import { useEffect } from "react";
+import axios from "axios";
 
-const Numbers = ({ numbers, title, link_text, page, setMenu }) => {
+const Numbers = ({ numbers, title, link_text, page, setMenu, setNumbers }) => {
+  const URL_API_NUMBERS =
+    "https://portfolio.kannder83.com/apalabrados/api/numbers";
+
   const tableTitle = ["Index", "Numero", "Acumulado"];
 
   const listHeader = tableTitle.map((value, index) => {
@@ -18,6 +23,25 @@ const Numbers = ({ numbers, title, link_text, page, setMenu }) => {
       </tr>
     );
   });
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(URL_API_NUMBERS);
+        setNumbers(response.data);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+
+    getData();
+  }, []);
 
   return (
     <main

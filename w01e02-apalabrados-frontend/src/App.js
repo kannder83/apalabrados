@@ -6,15 +6,12 @@ import { Texts } from "./pages/Texts";
 import { Numbers } from "./pages/Numbers";
 import { Characters } from "./pages/Characters";
 import { Missing } from "./pages/Missing";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
-  const API_URL = "http://localhost:8001/api/storedata";
-  const URL_API_NUMBERS = "http://localhost:8001/api/numbers";
-  const URL_API_CHARACTERS = "http://localhost:8001/api/characters";
+  const API_URL = "https://portfolio.kannder83.com/apalabrados/api/storedata";
 
-  const URL_API_TEXTS = "http://localhost:8001/api/texts";
   const [reciveData, setReciveData] = useState([]);
   const [characters, setCharacters] = useState("");
   const [menu, setMenu] = useState(false);
@@ -40,7 +37,6 @@ function App() {
     try {
       const response = await axios.post(API_URL, { data: dataSubmit });
       setReciveData(response.data);
-      console.log(response.data);
       determinateData(response.data);
     } catch (err) {
       if (err.response) {
@@ -53,61 +49,6 @@ function App() {
       }
     }
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(URL_API_NUMBERS);
-        setNumbers(response.data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
-
-    getData();
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(URL_API_TEXTS);
-        setWords(response.data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
-    getData();
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(URL_API_CHARACTERS);
-        setChar(response.data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    };
-    getData();
-  }, []);
 
   return (
     <div className="App">
@@ -134,6 +75,7 @@ function App() {
             page="/"
             link_text="Regresar"
             setMenu={setMenu}
+            setNumbers={setNumbers}
           />
         </Route>
         <Route path="/texts">
@@ -143,6 +85,7 @@ function App() {
             page="/"
             link_text="Regresar"
             setMenu={setMenu}
+            setWords={setWords}
           />
         </Route>
         <Route path="/characters">
@@ -152,6 +95,7 @@ function App() {
             page="/"
             link_text="Regresar"
             setMenu={setMenu}
+            setChar={setChar}
           />
         </Route>
         <Route path="*">
