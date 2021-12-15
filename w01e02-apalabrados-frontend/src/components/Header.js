@@ -18,26 +18,30 @@ const Header = ({ header_title, menu, setMenu }) => {
       <div className="menu" style={{ visibility: menu ? "visible" : "hidden" }}>
         <Link
           className="links menu_link"
-          to="/characters"
+          to="/master/apalabrados/characters"
           onClick={() => setMenu(false)}
         >
           <p>Caracteres</p>
         </Link>
         <Link
           className="links menu_link"
-          to="/numbers"
+          to="/master/apalabrados/numbers"
           onClick={() => setMenu(false)}
         >
           <p>Números</p>
         </Link>
         <Link
           className="links menu_link"
-          to="/texts"
+          to="/master/apalabrados/texts"
           onClick={() => setMenu(false)}
         >
           <p>Palabras</p>
         </Link>
-        <Link className="links menu_link" to="/" onClick={() => setMenu(false)}>
+        <Link
+          className="links menu_link"
+          to="/master/apalabrados/"
+          onClick={() => setMenu(false)}
+        >
           <p>Inicio</p>
         </Link>
       </div>
