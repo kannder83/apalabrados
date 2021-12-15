@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
-  const API_URL = "https://portfolio.kannder83.com/apalabrados/api/storedata";
+  const API_URL = "https://kannder83.com/api/apalabrados/api/storedata";
 
   const [reciveData, setReciveData] = useState([]);
   const [characters, setCharacters] = useState("");

@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Characters = ({ char, title, link_text, page, setMenu, setChar }) => {
   const URL_API_CHARACTERS =
-    "https://portfolio.kannder83.com/apalabrados/api/characters";
+    "https://kannder83.com/api/apalabrados/api/characters";
   const tableTitle = ["Index", "Caracter"];
 
   const listHeader = tableTitle.map((value, index) => {

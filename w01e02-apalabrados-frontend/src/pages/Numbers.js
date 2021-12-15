@@ -5,8 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Numbers = ({ numbers, title, link_text, page, setMenu, setNumbers }) => {
-  const URL_API_NUMBERS =
-    "https://portfolio.kannder83.com/apalabrados/api/numbers";
+  const URL_API_NUMBERS = "https://kannder83.com/api/apalabrados/api/numbers";
 
   const tableTitle = ["Index", "Numero", "Acumulado"];
 

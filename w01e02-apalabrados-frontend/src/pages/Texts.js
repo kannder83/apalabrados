@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Texts = ({ words, title, link_text, page, setMenu, setWords }) => {
-  const URL_API_TEXTS = "https://portfolio.kannder83.com/apalabrados/api/texts";
+  const URL_API_TEXTS = "https://kannder83.com/api/apalabrados/api/texts";
   const tableTitle = ["Index", "Palabra", "Primera Letra", "Última letra"];
 
   const listHeader = tableTitle.map((value, index) => {
