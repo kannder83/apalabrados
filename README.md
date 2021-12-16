@@ -1,17 +1,18 @@
-📖
-#Apalabrados
 
-Hace parte de la prueba técnida al ingresar a Platzi Master.
+# 📖 Project Name: Apalabrados 
 
-##Acceso
+This was my technical exam to access Platzi Master.
 
-[Apalabrados](https://apalabrados.kannder83.com/)
+## 🌎 Access
 
-Se encarga de clasificar entre números, letras y caracteres especiales.
+[Link - Apalabrados](https://kannder83.com/master/apalabrados/)
 
-#Herramientas
+The program sorts the data it receives into numbers, letters or special characters and stores them in a database.
+
+## 🛰 Technologies used:
 
 - React
 - MongoDB
 - Express
 - NodeJS
+- GCP
