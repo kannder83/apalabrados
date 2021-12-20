@@ -54,7 +54,7 @@ function App() {
     <div className="App">
       <Header header_title="Prueba técnica" menu={menu} setMenu={setMenu} />
       <Switch>
-        <Route exact path="/master/apalabrados/">
+        <Route exact path="/">
           <Home
             main_title="¡Apalabrados!"
             characters={characters}
@@ -68,31 +68,31 @@ function App() {
             setMenu={setMenu}
           />
         </Route>
-        <Route path="/master/apalabrados/numbers">
+        <Route path="/numbers">
           <Numbers
             numbers={numbers}
             title={"Números"}
-            page="/master/apalabrados/"
+            page="/"
             link_text="Regresar"
             setMenu={setMenu}
             setNumbers={setNumbers}
           />
         </Route>
-        <Route path="/master/apalabrados/texts">
+        <Route path="/texts">
           <Texts
             words={words}
             title={"Palabras"}
-            page="/master/apalabrados/"
+            page="/"
             link_text="Regresar"
             setMenu={setMenu}
             setWords={setWords}
           />
         </Route>
-        <Route path="/master/apalabrados/characters">
+        <Route path="/characters">
           <Characters
             char={char}
             title={"Caracteres"}
-            page="/master/apalabrados/"
+            page="/"
             link_text="Regresar"
             setMenu={setMenu}
             setChar={setChar}
@@ -100,7 +100,7 @@ function App() {
         </Route>
         <Route path="*">
           <Missing
-            page="/master/apalabrados/"
+            page="/"
             title="404 - Page Not Found."
             link_text="Regresar"
             setMenu={setMenu}

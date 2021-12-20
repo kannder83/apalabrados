@@ -22,6 +22,8 @@ const Characters = ({ char, title, link_text, page, setMenu, setChar }) => {
     );
   });
 
+
+
   useEffect(() => {
     const getData = async () => {
       try {
